@@ -4,27 +4,18 @@ class Question3 {
 
   def findMaximumDifference(arr: Array[Int]): Int = {
 
-    var max = arr(0)
-    var min = arr(arr.length - 1)
+    var maxValue = 0
     /*
     find maximum value
-    Time complexity O(n)
+    Time complexity O(n^2)
      */
     for(i <- 0 to arr.length - 1)
-      if(min > arr(i))
-        min = arr(i)
-    /*
-    find minimum value
-    Time complexity O(n)
-     */
-    for(i <- 0 to arr.length - 1)
-      if(max < arr(i))
-        max = arr(i)
+      for(j <- i + 1  to arr.length - 1)
+        if(i < j && arr(i) < arr(j) && Math.abs(arr(i) - arr(j)) > maxValue)
+          maxValue = Math.abs(arr(i) - arr(j))
 
-    val findDifference  = max - min
-
-    findDifference
+    maxValue
   }
   println(findMaximumDifference(Array(8, 3, 1, 7, 9, 5, 11, 3, 5)))
-  println(findMaximumDifference(Array(23, 42, 5, 3, 21, 7,1 ,2, 4,7, 8)))
+  println(findMaximumDifference(Array(23,42,5,3,21,7,12,4,78)))
 }
